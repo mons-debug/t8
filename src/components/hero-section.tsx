@@ -88,8 +88,8 @@ export function HeroSection({ cars }: { cars: Vehicle[] }) {
             className="relative -mr-6 md:-mr-20"
           >
             <img
-              src="/hero/porsche.png"
-              alt="Voiture premium"
+              src="/hero/hero-car.png"
+              alt="SUV premium — Location de voitures T8 Auto"
               className="w-full max-w-[700px] object-contain ml-auto"
               draggable={false}
             />
