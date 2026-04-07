@@ -170,11 +170,27 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground px-4 py-10 text-sm text-muted-foreground">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="font-bold text-white">T8 Auto</div>
-          <div>Boulevard Hanane Idrissi, Tanger 90000</div>
-          <div>contact@t8-auto.com</div>
+      <footer className="bg-foreground px-4 py-10 text-sm text-gray-400">
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <div>
+              <div className="text-lg font-bold text-white">T8 Auto</div>
+              <div className="mt-1">Boulevard Hanane Idrissi, Tanger 90000</div>
+            </div>
+            <div className="flex gap-6">
+              <Link href="/cars" className="hover:text-white">Voitures</Link>
+              <Link href="/about" className="hover:text-white">Qui sommes-nous</Link>
+              <Link href="/contact" className="hover:text-white">Contact</Link>
+              <Link href="/terms" className="hover:text-white">Conditions</Link>
+            </div>
+            <div className="text-right">
+              <div>+212 660 027 233</div>
+              <div>contact@t8-auto.com</div>
+            </div>
+          </div>
+          <div className="mt-6 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
+            © {new Date().getFullYear()} T8 Auto. Tous droits réservés.
+          </div>
         </div>
       </footer>
     </main>
