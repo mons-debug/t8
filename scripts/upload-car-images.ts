@@ -13,15 +13,19 @@ cloudinary.config({
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
 
+// Original T8 website professional car images
 const CAR_IMAGES: { sortOrder: number; file: string }[] = [
-  // Only the 3 that failed (too large) — now resized
-  { sortOrder: 3, file: "/tmp/t8-cars/logan-sm.jpg" },
-  { sortOrder: 5, file: "/tmp/t8-cars/clio5-black-sm.jpg" },
-  { sortOrder: 6, file: "/tmp/t8-cars/clio5-blue-sm.jpg" },
+  { sortOrder: 1, file: "/tmp/t8-cars/1-duster.jpg" },
+  { sortOrder: 2, file: "/tmp/t8-cars/2-accent.jpg" },
+  { sortOrder: 3, file: "/tmp/t8-cars/3-logan.jpg" },
+  { sortOrder: 4, file: "/tmp/t8-cars/4-clio5-gris.jpg" },
+  { sortOrder: 5, file: "/tmp/t8-cars/5-clio5-noir.jpg" },
+  { sortOrder: 6, file: "/tmp/t8-cars/6-clio5-bleu.jpg" },
+  { sortOrder: 7, file: "/tmp/t8-cars/7-clio4.png" },
 ];
 
 async function uploadAndUpdate() {
-  console.log("Starting car image uploads from local files...\n");
+  console.log("Uploading T8 original car images to Cloudinary...\n");
 
   for (const car of CAR_IMAGES) {
     const [vehicle] = await db
@@ -39,6 +43,7 @@ async function uploadAndUpdate() {
     try {
       const result = await cloudinary.uploader.upload(car.file, {
         folder: `t8-auto/vehicles/${vehicle.id}`,
+        overwrite: true,
         transformation: [
           {
             width: 1200,
