@@ -50,39 +50,80 @@ export function HomepageClient({ cars }: { cars: Vehicle[] }) {
             </div>
           </FadeUp>
 
-          {/* Car grid — varied sizes like reference */}
-          <StaggerContainer className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerDelay={0.08}>
-            {cars.slice(0, 6).map((car, i) => (
-              <StaggerItem key={car.id}>
-                <Link href={`/cars/${car.id}`} className="group block">
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="overflow-hidden rounded-2xl bg-[#f5f5f5] transition-shadow hover:shadow-lg"
-                  >
-                    {car.coverImage ? (
-                      <img
-                        src={car.coverImage}
-                        alt={`${car.make} ${car.model}`}
-                        className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-                          i === 0 ? "aspect-[4/3]" : "aspect-[4/3]"
-                        }`}
-                      />
-                    ) : (
-                      <div className="aspect-[4/3] bg-gray-200" />
-                    )}
-                    <div className="bg-white p-4 text-left">
-                      <h3 className="font-bold text-[#0f172a]">{car.make} {car.model}</h3>
-                      <div className="mt-1 flex items-center justify-between">
-                        <span className="text-sm text-gray-400">{car.year} · {car.color}</span>
-                        <span className="font-bold text-[#e53935]">{car.dailyRate} DH<span className="text-xs font-normal text-gray-400">/jour</span></span>
+          {/* Car grid — row 1: 3 cards (small, large, small), row 2: 4 smaller */}
+          <div className="mt-10">
+            {/* Row 1 — 3 cols: 1fr 1.5fr 1fr */}
+            <StaggerContainer className="grid gap-4 md:grid-cols-[1fr_1.4fr_1fr]" staggerDelay={0.08}>
+              {cars.slice(0, 3).map((car, i) => (
+                <StaggerItem key={car.id}>
+                  <Link href={`/cars/${car.id}`} className="group block h-full">
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className={`h-full overflow-hidden rounded-2xl border border-gray-100 bg-[#f5f5f5] transition-shadow hover:shadow-lg ${
+                        i === 1 ? "ring-2 ring-[#e53935]/10" : ""
+                      }`}
+                    >
+                      {car.coverImage ? (
+                        <div className="overflow-hidden bg-[#f0f0f0]">
+                          <img
+                            src={car.coverImage}
+                            alt={`${car.make} ${car.model}`}
+                            className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+                              i === 1 ? "aspect-[4/3]" : "aspect-[5/4]"
+                            }`}
+                          />
+                        </div>
+                      ) : (
+                        <div className="aspect-[5/4] bg-gray-200" />
+                      )}
+                      <div className="bg-white p-4 text-left">
+                        <h3 className="font-bold text-[#0f172a]">{car.make} {car.model}</h3>
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-sm text-gray-400">{car.year} · {car.color}</span>
+                          <span className="font-bold text-[#e53935]">{car.dailyRate} DH<span className="text-xs font-normal text-gray-400">/jour</span></span>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                    </motion.div>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            {/* Row 2 — 4 equal smaller cards */}
+            <StaggerContainer className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.06}>
+              {cars.slice(3, 7).map((car) => (
+                <StaggerItem key={car.id}>
+                  <Link href={`/cars/${car.id}`} className="group block">
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="overflow-hidden rounded-2xl border border-gray-100 bg-[#f5f5f5] transition-shadow hover:shadow-lg"
+                    >
+                      {car.coverImage ? (
+                        <div className="overflow-hidden bg-[#f0f0f0]">
+                          <img
+                            src={car.coverImage}
+                            alt={`${car.make} ${car.model}`}
+                            className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                      ) : (
+                        <div className="aspect-[4/3] bg-gray-200" />
+                      )}
+                      <div className="bg-white p-3 text-left">
+                        <h3 className="text-sm font-bold text-[#0f172a]">{car.make} {car.model}</h3>
+                        <div className="mt-0.5 flex items-center justify-between">
+                          <span className="text-xs text-gray-400">{car.color}</span>
+                          <span className="text-sm font-bold text-[#e53935]">{car.dailyRate} DH</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
 
           {/* Show all button */}
           <FadeUp delay={0.2}>

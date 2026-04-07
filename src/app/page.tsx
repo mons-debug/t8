@@ -9,7 +9,7 @@ export default async function Home() {
     .from(vehicles)
     .where(eq(vehicles.status, "available"))
     .orderBy(asc(vehicles.sortOrder))
-    .limit(6);
+    .limit(7);
 
   return <HomepageClient cars={cars} />;
 }
