@@ -1,9 +1,9 @@
 import { db } from "@/db";
 import { vehicles } from "@/db/schema";
 import { eq, asc } from "drizzle-orm";
-import { HomepageClient } from "@/components/homepage-client";
+import { HomePage } from "@/components/sections/home-page";
 
-export default async function Home() {
+export default async function Page() {
   const cars = await db
     .select()
     .from(vehicles)
@@ -11,5 +11,5 @@ export default async function Home() {
     .orderBy(asc(vehicles.sortOrder))
     .limit(7);
 
-  return <HomepageClient cars={cars} />;
+  return <HomePage cars={cars} />;
 }
