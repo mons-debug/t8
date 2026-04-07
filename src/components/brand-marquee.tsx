@@ -15,7 +15,7 @@ export function BrandMarquee() {
   const logos = [...BRANDS, ...BRANDS, ...BRANDS];
 
   return (
-    <section className="overflow-hidden border-y bg-white py-10 md:py-14">
+    <section className="overflow-hidden border-b bg-white py-10 md:py-14">
       <div className="mx-auto max-w-[1400px] px-6">
         <p className="mb-8 text-center text-xs font-medium uppercase tracking-widest text-gray-400">
           Nos partenaires et marques
