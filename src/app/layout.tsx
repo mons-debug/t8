@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { Navbar } from "@/components/navbar";
 
-const inter = Inter({
+const outfit = Outfit({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={cn("h-full antialiased", inter.variable)}>
+    <html lang="fr" className={cn("h-full antialiased", outfit.variable)}>
       <body className="min-h-full flex flex-col font-sans">
         <Providers>
           <Navbar />

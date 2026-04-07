@@ -14,6 +14,7 @@
     "db:seed": "npx tsx src/db/seed.ts"
   },
   "dependencies": {
+    "@fontsource-variable/outfit": "^5.2.8",
     "@fullcalendar/core": "^6.1.20",
     "@fullcalendar/daygrid": "^6.1.20",
     "@fullcalendar/interaction": "^6.1.20",
@@ -25,6 +26,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.45.2",
+    "framer-motion": "^12.38.0",
     "lucide-react": "^1.7.0",
     "next": "16.2.2",
     "next-auth": "^5.0.0-beta.30",
