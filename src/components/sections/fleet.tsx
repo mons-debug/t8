@@ -106,24 +106,31 @@ export function Fleet({ cars }: { cars: Vehicle[] }) {
           </motion.div>
         </div>
 
-        {/* Mobile: single column stack. Desktop: 3-col top + 4-col bottom */}
-        <div className="mt-14 grid gap-6 grid-cols-1 md:grid-cols-3">
-          {cars.slice(0, 3).map((car, i) => (
-            <Card key={car.id} car={car} i={i} />
-          ))}
-        </div>
-        {cars.length > 3 && (
-          <div className="mt-6">
-            {/* Mobile: horizontal scroll. Desktop: 4-col grid */}
-            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-4 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden">
+        {/* Mobile: ALL cars in one horizontal swipe carousel. Desktop: 3+4 grid */}
+        <div className="mt-14">
+          {/* Mobile carousel */}
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:hidden [&::-webkit-scrollbar]:hidden">
+            {cars.map((car, i) => (
+              <div key={car.id} className="min-w-[80vw] snap-start">
+                <Card car={car} i={i} />
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop grid */}
+          <div className="hidden md:grid gap-6 md:grid-cols-3">
+            {cars.slice(0, 3).map((car, i) => (
+              <Card key={car.id} car={car} i={i} />
+            ))}
+          </div>
+          {cars.length > 3 && (
+            <div className="hidden md:grid gap-6 mt-6 md:grid-cols-4">
               {cars.slice(3, 7).map((car, i) => (
-                <div key={car.id} className="min-w-[70vw] snap-start md:min-w-0">
-                  <Card car={car} i={i + 3} />
-                </div>
+                <Card key={car.id} car={car} i={i + 3} />
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );
