@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Fuel, Gauge, Snowflake, MapPin, Phone, ArrowRight, Plane, TrainFront, Ship, MessageCircle } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerItem, ScaleOnHover, motion } from "@/components/motion";
+import { HeroSection } from "@/components/hero-section";
 import type { Vehicle } from "@/db/schema";
 
 export function HomepageClient({ cars }: { cars: Vehicle[] }) {
@@ -13,116 +14,8 @@ export function HomepageClient({ cars }: { cars: Vehicle[] }) {
 
   return (
     <main className="flex-1">
-      {/* ── HERO ── Asymmetric split, not centered */}
-      <section className="relative min-h-[100dvh] overflow-hidden bg-[#0f172a]">
-        {/* Subtle grain overlay */}
-        <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
-
-        <div className="mx-auto grid max-w-[1400px] items-center gap-8 px-6 pt-32 pb-20 md:grid-cols-5 md:gap-12 md:pt-40 md:pb-32">
-          {/* Text — 2 cols */}
-          <div className="md:col-span-2">
-            <FadeUp>
-              <span className="inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-gray-400 uppercase">
-                Location de voitures
-              </span>
-            </FadeUp>
-
-            <FadeUp delay={0.1}>
-              <h1 className="mt-6 text-4xl font-extrabold tracking-tighter leading-none text-white md:text-6xl">
-                Roulez libre
-                <span className="block text-[#e53935]">à Tanger</span>
-              </h1>
-            </FadeUp>
-
-            <FadeUp delay={0.2}>
-              <p className="mt-6 max-w-[45ch] text-lg leading-relaxed text-gray-400">
-                Flotte fiable. Livraison aéroport, gare TGV, port Tanger Med.
-                Réservez en ligne ou via WhatsApp.
-              </p>
-            </FadeUp>
-
-            <FadeUp delay={0.3}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/cars">
-                  <Button size="lg" className="gap-2 text-base">
-                    Voir les voitures
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <a
-                  href="https://wa.me/212660027233?text=Bonjour%2C%20je%20souhaite%20louer%20une%20voiture"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="gap-2 border-white/10 text-base text-white hover:bg-white/5"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    WhatsApp
-                  </Button>
-                </a>
-              </div>
-            </FadeUp>
-
-            {/* Stats row */}
-            <FadeUp delay={0.4}>
-              <div className="mt-12 flex gap-8 border-t border-white/10 pt-8">
-                {[
-                  { value: "7+", label: "Voitures" },
-                  { value: "300", label: "DH/jour min" },
-                  { value: "24/7", label: "WhatsApp" },
-                ].map((stat) => (
-                  <div key={stat.label}>
-                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-
-          {/* Hero car — 3 cols */}
-          {heroCar && (
-            <FadeUp delay={0.2} className="md:col-span-3">
-              <Link href={`/cars/${heroCar.id}`} className="group block">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                  className="relative overflow-hidden rounded-3xl"
-                >
-                  {heroCar.coverImage ? (
-                    <img
-                      src={heroCar.coverImage}
-                      alt={`${heroCar.make} ${heroCar.model}`}
-                      className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="aspect-[16/10] bg-gray-800" />
-                  )}
-                  {/* Overlay info */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-20">
-                    <div className="flex items-end justify-between">
-                      <div>
-                        <p className="text-sm text-gray-300">{heroCar.category === "suv" ? "SUV" : heroCar.category === "midrange" ? "Berline" : "Economique"}</p>
-                        <h2 className="text-2xl font-bold text-white md:text-3xl">
-                          {heroCar.make} {heroCar.model}
-                        </h2>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-3xl font-bold text-white">
-                          {heroCar.dailyRate} <span className="text-base font-normal text-gray-300">DH/jour</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </Link>
-            </FadeUp>
-          )}
-        </div>
-      </section>
+      {/* ── HERO ── Cinematic with parallax + 3D tilt */}
+      <HeroSection heroCar={heroCar} />
 
       {/* ── SERVICES ── */}
       <section className="bg-white px-6 py-24 md:py-32">
