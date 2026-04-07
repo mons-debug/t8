@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Fuel, Gauge, Snowflake, MapPin, Phone, ArrowRight, Plane, TrainFront, Ship, MessageCircle } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerItem, ScaleOnHover, motion } from "@/components/motion";
 import { HeroSection } from "@/components/hero-section";
+import { BrandMarquee } from "@/components/brand-marquee";
 import type { Vehicle } from "@/db/schema";
 
 export function HomepageClient({ cars }: { cars: Vehicle[] }) {
@@ -16,6 +17,9 @@ export function HomepageClient({ cars }: { cars: Vehicle[] }) {
     <main className="flex-1">
       {/* ── HERO ── Cinematic with parallax + 3D tilt */}
       <HeroSection heroCar={heroCar} />
+
+      {/* ── BRAND MARQUEE ── */}
+      <BrandMarquee />
 
       {/* ── SERVICES ── */}
       <section className="bg-white px-6 py-24 md:py-32">
