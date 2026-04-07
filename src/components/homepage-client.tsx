@@ -27,21 +27,24 @@ export function HomepageClient({ cars }: { cars: Vehicle[] }) {
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#0f172a] md:text-5xl">
               Notre flotte
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-base text-gray-500">
-              Des véhicules fiables et bien entretenus pour tous vos déplacements à Tanger.
+            <p className="mx-auto mt-4 max-w-lg text-base text-gray-500">
+              Nous offrons à nos clients les meilleures émotions de conduite.
+              C'est pourquoi nous n'avons que des voitures de qualité dans notre flotte.
             </p>
           </FadeUp>
 
-          {/* Category pills */}
+          {/* Category pills — like reference */}
           <FadeUp delay={0.1}>
             <div className="mt-8 flex flex-wrap justify-center gap-2">
-              {["Tous", "SUV", "Berline", "Economique"].map((cat, i) => (
+              {["Premium", "SUV", "Berline", "Economique", "Diesel", "Automatique"].map((cat, i) => (
                 <span
                   key={cat}
-                  className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+                  className={`cursor-pointer rounded-full border px-5 py-2 text-sm font-medium transition-all hover:bg-[#0f172a] hover:text-white hover:border-[#0f172a] ${
                     i === 0
-                      ? "bg-[#0f172a] text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      ? "bg-[#0f172a] text-white border-[#0f172a]"
+                      : i === 4
+                        ? "bg-[#e53935] text-white border-[#e53935]"
+                        : "border-gray-200 bg-white text-gray-600"
                   }`}
                 >
                   {cat}
@@ -50,74 +53,48 @@ export function HomepageClient({ cars }: { cars: Vehicle[] }) {
             </div>
           </FadeUp>
 
-          {/* Car grid — row 1: 3 cards (small, large, small), row 2: 4 smaller */}
+          {/* Car grid — pure images, rounded, no cards */}
           <div className="mt-10">
-            {/* Row 1 — 3 cols: 1fr 1.5fr 1fr */}
-            <StaggerContainer className="grid gap-4 md:grid-cols-[1fr_1.4fr_1fr]" staggerDelay={0.08}>
-              {cars.slice(0, 3).map((car, i) => (
+            {/* Row 1 — 3 images */}
+            <StaggerContainer className="grid gap-3 md:grid-cols-[1fr_1.4fr_1fr]" staggerDelay={0.08}>
+              {cars.slice(0, 3).map((car) => (
                 <StaggerItem key={car.id}>
-                  <Link href={`/cars/${car.id}`} className="group block h-full">
+                  <Link href={`/cars/${car.id}`} className="group block">
                     <motion.div
-                      whileHover={{ y: -4 }}
+                      whileHover={{ scale: 1.03 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className={`h-full overflow-hidden rounded-2xl border border-gray-100 bg-[#f5f5f5] transition-shadow hover:shadow-lg ${
-                        i === 1 ? "ring-2 ring-[#e53935]/10" : ""
-                      }`}
+                      className="overflow-hidden rounded-2xl"
                     >
-                      {car.coverImage ? (
-                        <div className="overflow-hidden bg-[#f0f0f0]">
-                          <img
-                            src={car.coverImage}
-                            alt={`${car.make} ${car.model}`}
-                            className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-                              i === 1 ? "aspect-[4/3]" : "aspect-[5/4]"
-                            }`}
-                          />
-                        </div>
-                      ) : (
-                        <div className="aspect-[5/4] bg-gray-200" />
+                      {car.coverImage && (
+                        <img
+                          src={car.coverImage}
+                          alt={`${car.make} ${car.model}`}
+                          className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
                       )}
-                      <div className="bg-white p-4 text-left">
-                        <h3 className="font-bold text-[#0f172a]">{car.make} {car.model}</h3>
-                        <div className="mt-1 flex items-center justify-between">
-                          <span className="text-sm text-gray-400">{car.year} · {car.color}</span>
-                          <span className="font-bold text-[#e53935]">{car.dailyRate} DH<span className="text-xs font-normal text-gray-400">/jour</span></span>
-                        </div>
-                      </div>
                     </motion.div>
                   </Link>
                 </StaggerItem>
               ))}
             </StaggerContainer>
 
-            {/* Row 2 — 4 equal smaller cards */}
-            <StaggerContainer className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.06}>
+            {/* Row 2 — 4 smaller images */}
+            <StaggerContainer className="mt-3 grid gap-3 grid-cols-2 lg:grid-cols-4" staggerDelay={0.06}>
               {cars.slice(3, 7).map((car) => (
                 <StaggerItem key={car.id}>
                   <Link href={`/cars/${car.id}`} className="group block">
                     <motion.div
-                      whileHover={{ y: -4 }}
+                      whileHover={{ scale: 1.03 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="overflow-hidden rounded-2xl border border-gray-100 bg-[#f5f5f5] transition-shadow hover:shadow-lg"
+                      className="overflow-hidden rounded-2xl"
                     >
-                      {car.coverImage ? (
-                        <div className="overflow-hidden bg-[#f0f0f0]">
-                          <img
-                            src={car.coverImage}
-                            alt={`${car.make} ${car.model}`}
-                            className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                        </div>
-                      ) : (
-                        <div className="aspect-[4/3] bg-gray-200" />
+                      {car.coverImage && (
+                        <img
+                          src={car.coverImage}
+                          alt={`${car.make} ${car.model}`}
+                          className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
                       )}
-                      <div className="bg-white p-3 text-left">
-                        <h3 className="text-sm font-bold text-[#0f172a]">{car.make} {car.model}</h3>
-                        <div className="mt-0.5 flex items-center justify-between">
-                          <span className="text-xs text-gray-400">{car.color}</span>
-                          <span className="text-sm font-bold text-[#e53935]">{car.dailyRate} DH</span>
-                        </div>
-                      </div>
                     </motion.div>
                   </Link>
                 </StaggerItem>
