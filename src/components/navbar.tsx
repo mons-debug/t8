@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ease = [0.32, 0.72, 0, 1] as const;
@@ -18,7 +18,6 @@ const NAV_LINKS = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [dark, setDark] = useState(false);
   const pathname = usePathname();
 
   if (pathname.startsWith("/admin")) return null;
@@ -26,25 +25,10 @@ export function Navbar() {
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const saved = localStorage.getItem("t8-theme");
-    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      setDark(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  useEffect(() => {
     function onScroll() { setScrolled(window.scrollY > 50); }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  function toggleDark() {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("t8-theme", next ? "dark" : "light");
-  }
 
   // Lock body scroll when menu open
   useEffect(() => {
@@ -85,14 +69,6 @@ export function Navbar() {
               </Link>
             ))}
 
-            {/* Dark mode toggle */}
-            <button
-              onClick={toggleDark}
-              className="ml-1 flex h-8 w-8 items-center justify-center rounded-full text-[#64748b] transition-colors hover:bg-black/5 dark:text-[#94a3b8] dark:hover:bg-white/5"
-            >
-              {dark ? <Sun className="h-4 w-4" strokeWidth={1.5} /> : <Moon className="h-4 w-4" strokeWidth={1.5} />}
-            </button>
-
             <a href="https://wa.me/212660027233" target="_blank" rel="noopener noreferrer" className="ml-2">
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
                 className="rounded-full bg-[#0a0a0f] dark:bg-white px-5 py-2 text-[12px] font-semibold text-white dark:text-[#0a0a0f] transition-colors"
@@ -102,21 +78,13 @@ export function Navbar() {
             </a>
           </nav>
 
-          {/* Mobile — dark toggle + hamburger */}
-          <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={toggleDark}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-[#64748b] dark:text-[#94a3b8]"
-            >
-              {dark ? <Sun className="h-4 w-4" strokeWidth={1.5} /> : <Moon className="h-4 w-4" strokeWidth={1.5} />}
-            </button>
-            <button
-              className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5"
-              onClick={() => setOpen(!open)}
-            >
-              <Menu className="h-5 w-5 text-[#0a0a0f] dark:text-white" strokeWidth={1.5} />
-            </button>
-          </div>
+          {/* Mobile hamburger */}
+          <button
+            className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-black/5 md:hidden"
+            onClick={() => setOpen(!open)}
+          >
+            <Menu className="h-5 w-5 text-[#0a0a0f]" strokeWidth={1.5} />
+          </button>
         </div>
       </header>
 
