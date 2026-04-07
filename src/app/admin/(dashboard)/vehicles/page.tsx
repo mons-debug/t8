@@ -1,12 +1,14 @@
 import { db } from "@/db";
 import { vehicles } from "@/db/schema";
 import { asc } from "drizzle-orm";
-import { Car, Fuel, Gauge } from "lucide-react";
+import { Car, Fuel, Gauge, ImageIcon } from "lucide-react";
+import Link from "next/link";
 import { VehicleForm } from "@/components/admin/vehicle-form";
 import { VehicleEditButton } from "@/components/admin/vehicle-form";
 import { VehicleStatusToggle } from "@/components/admin/vehicle-status-toggle";
 import { VehicleDeleteButton } from "@/components/admin/vehicle-delete-button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default async function VehiclesPage() {
   const allVehicles = await db
@@ -66,9 +68,17 @@ export default async function VehiclesPage() {
                 {/* Car name + category */}
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                      <Car className="h-5 w-5 text-gray-500" />
-                    </div>
+                    {v.coverImage ? (
+                      <img
+                        src={v.coverImage}
+                        alt={`${v.make} ${v.model}`}
+                        className="h-10 w-14 rounded-lg object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-10 w-14 items-center justify-center rounded-lg bg-gray-100">
+                        <Car className="h-5 w-5 text-gray-500" />
+                      </div>
+                    )}
                     <div>
                       <p className="font-semibold">
                         {v.make} {v.model}
@@ -119,6 +129,16 @@ export default async function VehiclesPage() {
                 {/* Actions */}
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
+                    <Link href={`/admin/vehicles/${v.id}/photos`}>
+                      <Button variant="ghost" size="icon-xs" className="relative">
+                        <ImageIcon className="h-3.5 w-3.5" />
+                        {((v.images as string[]) || []).length > 0 && (
+                          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#e53935] text-[8px] font-bold text-white">
+                            {((v.images as string[]) || []).length}
+                          </span>
+                        )}
+                      </Button>
+                    </Link>
                     <VehicleEditButton vehicle={v} />
                     <VehicleDeleteButton
                       vehicleId={v.id}
@@ -158,6 +178,11 @@ export default async function VehiclesPage() {
                 </p>
               </div>
               <div className="flex items-center gap-1">
+                <Link href={`/admin/vehicles/${v.id}/photos`}>
+                  <Button variant="ghost" size="icon-xs" className="relative">
+                    <ImageIcon className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
                 <VehicleEditButton vehicle={v} />
                 <VehicleDeleteButton
                   vehicleId={v.id}
