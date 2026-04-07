@@ -14,6 +14,7 @@ import {
   CheckCircle,
   Phone,
 } from "lucide-react";
+import { BookingForm } from "@/components/booking-form";
 
 export async function generateMetadata({
   params,
@@ -219,6 +220,17 @@ export default async function CarDetailPage({
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Booking Form */}
+          <div className="mx-auto mt-8 max-w-2xl">
+            <BookingForm
+              vehicleId={car.id}
+              carName={`${car.make} ${car.model} ${car.year}`}
+              dailyRate={car.dailyRate}
+              weeklyRate={car.weeklyRate}
+              monthlyRate={car.monthlyRate}
+            />
           </div>
         </div>
       </section>
