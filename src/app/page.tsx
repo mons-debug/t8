@@ -1,6 +1,18 @@
+import { db } from "@/db";
+import { vehicles } from "@/db/schema";
+import { eq, asc } from "drizzle-orm";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Car, Fuel, Gauge, Snowflake } from "lucide-react";
 
-export default function Home() {
+export default async function Home() {
+  const featuredCars = await db
+    .select()
+    .from(vehicles)
+    .where(eq(vehicles.status, "available"))
+    .orderBy(asc(vehicles.sortOrder))
+    .limit(3);
+
   return (
     <main className="flex-1">
       {/* Hero */}
@@ -69,42 +81,71 @@ export default function Home() {
             Nos voitures en vedette
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {[
-              { name: "Dacia Duster", cat: "SUV", price: 500, trans: "Auto" },
-              { name: "Hyundai Accent", cat: "Berline", price: 400, trans: "Auto" },
-              { name: "Renault Clio 5", cat: "Économique", price: 350, trans: "Manuel" },
-            ].map((car) => (
-              <div
-                key={car.name}
-                className="overflow-hidden rounded-xl bg-card shadow-sm transition-shadow hover:shadow-md"
+            {featuredCars.map((car) => (
+              <Link
+                key={car.id}
+                href={`/cars/${car.id}`}
+                className="group overflow-hidden rounded-xl bg-card shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="aspect-[16/10] bg-muted" />
+                {car.coverImage ? (
+                  <div className="overflow-hidden">
+                    <img
+                      src={car.coverImage}
+                      alt={`${car.make} ${car.model}`}
+                      className="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex aspect-[16/10] items-center justify-center bg-muted">
+                    <Car className="h-12 w-12 text-gray-300" />
+                  </div>
+                )}
                 <div className="p-5">
-                  <div className="text-sm text-muted-foreground">{car.cat}</div>
-                  <h3 className="text-lg font-bold">{car.name}</h3>
+                  <div className="text-sm text-muted-foreground">
+                    {car.category === "economy"
+                      ? "Economique"
+                      : car.category === "midrange"
+                        ? "Berline"
+                        : "SUV"}
+                  </div>
+                  <h3 className="text-lg font-bold">
+                    {car.make} {car.model}
+                  </h3>
                   <div className="mt-1 flex flex-wrap gap-2">
-                    <span className="rounded-md bg-t8-red-light px-2 py-0.5 text-xs font-medium text-t8-red">
-                      {car.trans}
+                    <span className="inline-flex items-center gap-1 rounded-md bg-t8-red-light px-2 py-0.5 text-xs font-medium text-t8-red">
+                      <Gauge className="h-3 w-3" />
+                      {car.transmission === "auto" ? "Auto" : "Manuel"}
                     </span>
-                    <span className="rounded-md bg-t8-red-light px-2 py-0.5 text-xs font-medium text-t8-red">
-                      Diesel
+                    <span className="inline-flex items-center gap-1 rounded-md bg-t8-red-light px-2 py-0.5 text-xs font-medium text-t8-red">
+                      <Fuel className="h-3 w-3" />
+                      {car.fuel === "diesel" ? "Diesel" : "Essence"}
                     </span>
-                    <span className="rounded-md bg-t8-red-light px-2 py-0.5 text-xs font-medium text-t8-red">
-                      A/C
-                    </span>
+                    {car.hasAC && (
+                      <span className="inline-flex items-center gap-1 rounded-md bg-t8-red-light px-2 py-0.5 text-xs font-medium text-t8-red">
+                        <Snowflake className="h-3 w-3" />
+                        A/C
+                      </span>
+                    )}
                   </div>
                   <div className="mt-4 flex items-center justify-between">
                     <div className="text-xl font-bold text-t8-red">
-                      {car.price} DH
+                      {car.dailyRate} DH
                       <span className="text-sm font-normal text-muted-foreground">
                         /jour
                       </span>
                     </div>
-                    <Button size="sm">Réserver</Button>
+                    <Button size="sm">Voir</Button>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/cars">
+              <Button variant="outline" size="lg">
+                Voir toutes nos voitures
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -117,9 +158,15 @@ export default function Home() {
         <p className="mt-2 text-lg opacity-90">
           +212 660 027 233 · +212 672 400 030
         </p>
-        <Button variant="secondary" size="lg" className="mt-4">
-          WhatsApp
-        </Button>
+        <a
+          href="https://wa.me/212660027233?text=Bonjour%2C%20je%20souhaite%20louer%20une%20voiture%20%C3%A0%20Tanger"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="secondary" size="lg" className="mt-4">
+            WhatsApp
+          </Button>
+        </a>
       </section>
 
       {/* Footer */}
