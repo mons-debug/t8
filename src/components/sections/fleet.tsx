@@ -35,8 +35,8 @@ function Card({ car, i }: { car: Vehicle; i: number }) {
           {/* Info below image — clean, no card wrapper */}
           <div className="mt-3 flex items-center justify-between px-1">
             <div>
-              <h3 className="text-[15px] font-bold text-[#0a0a0f]">{car.make} {car.model}</h3>
-              <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-[#94a3b8]">
+              <h3 className="text-[15px] font-bold text-[#0a0a0f] dark:text-white">{car.make} {car.model}</h3>
+              <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-[#94a3b8] dark:text-[#64748b]">
                 <span>{car.year}</span>
                 <span className="text-[#d4d4d4]">/</span>
                 <span>{car.color}</span>
@@ -46,7 +46,7 @@ function Card({ car, i }: { car: Vehicle; i: number }) {
             </div>
             <div className="text-right">
               <span className="text-[18px] font-bold text-[#e53935]">{car.dailyRate}</span>
-              <span className="ml-0.5 text-[11px] text-[#94a3b8]">DH/j</span>
+              <span className="ml-0.5 text-[11px] text-[#94a3b8] dark:text-[#64748b]">DH/j</span>
             </div>
           </div>
         </motion.div>
@@ -57,7 +57,7 @@ function Card({ car, i }: { car: Vehicle; i: number }) {
 
 export function Fleet({ cars }: { cars: Vehicle[] }) {
   return (
-    <section className="bg-white px-5 py-28 md:px-12 md:py-40">
+    <section className="bg-white dark:bg-[#0a0a0f] px-5 py-28 md:px-12 md:py-40">
       <div className="mx-auto max-w-[1440px]">
         {/* Header */}
         <motion.div
@@ -79,10 +79,10 @@ export function Fleet({ cars }: { cars: Vehicle[] }) {
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.06, ease }}
           >
-            <h2 className="text-[clamp(2rem,5vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.02em] text-[#0a0a0f]">
+            <h2 className="text-[clamp(2rem,5vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.02em] text-[#0a0a0f] dark:text-white">
               Des voitures que vous<br className="hidden md:block" /> allez adorer.
             </h2>
-            <p className="mt-4 max-w-md text-[15px] leading-[1.7] text-[#94a3b8]">
+            <p className="mt-4 max-w-md text-[15px] leading-[1.7] text-[#94a3b8] dark:text-[#64748b]">
               Flotte entretenue et diversifiée — SUV, berlines, économiques. Toutes climatisées, prêtes à partir.
             </p>
           </motion.div>

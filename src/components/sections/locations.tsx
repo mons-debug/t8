@@ -19,7 +19,7 @@ function In({ children, className, d = 0 }: { children: React.ReactNode; classNa
 
 export function Locations() {
   return (
-    <section className="bg-[#faf6f1] px-5 py-28 md:px-12 md:py-40">
+    <section className="bg-[#faf6f1] dark:bg-[#0f0f14] px-5 py-28 md:px-12 md:py-40">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid gap-12 md:grid-cols-2">
           <div>
@@ -30,7 +30,7 @@ export function Locations() {
               </div>
             </In>
             <In d={0.06}>
-              <h2 className="mt-5 text-[clamp(2rem,5vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.02em] text-[#0a0a0f]">
+              <h2 className="mt-5 text-[clamp(2rem,5vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.02em] text-[#0a0a0f] dark:text-white">
                 Nous trouver.
               </h2>
             </In>
@@ -42,13 +42,13 @@ export function Locations() {
                 { icon: Clock, t: "08:00 — 20:00", s: "7 jours / 7" },
               ].map((item, i) => (
                 <In key={item.t} d={0.12 + i * 0.06}>
-                  <div className="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-black/[0.03]">
+                  <div className="flex items-center gap-4 rounded-2xl bg-white dark:bg-white/[0.04] p-4 ring-1 ring-black/[0.03] dark:ring-white/[0.06]">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ffebee]">
                       <item.icon className="h-[18px] w-[18px] text-[#e53935]" strokeWidth={1.5} />
                     </div>
                     <div>
-                      <div className="text-[14px] font-semibold text-[#0a0a0f]">{item.t}</div>
-                      <div className="text-[12px] text-[#94a3b8]">{item.s}</div>
+                      <div className="text-[14px] font-semibold text-[#0a0a0f] dark:text-white">{item.t}</div>
+                      <div className="text-[12px] text-[#94a3b8] dark:text-[#64748b]">{item.s}</div>
                     </div>
                   </div>
                 </In>
@@ -62,7 +62,7 @@ export function Locations() {
                   { icon: TrainFront, name: "Gare TGV" },
                   { icon: Ship, name: "Port Tanger Med" },
                 ].map((loc) => (
-                  <span key={loc.name} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[11px] font-semibold text-[#0a0a0f] ring-1 ring-black/[0.03]">
+                  <span key={loc.name} className="inline-flex items-center gap-2 rounded-full bg-white dark:bg-white/[0.04] px-4 py-2 text-[11px] font-semibold text-[#0a0a0f] dark:text-white ring-1 ring-black/[0.03] dark:ring-white/[0.06]">
                     <loc.icon className="h-3.5 w-3.5 text-[#e53935]" strokeWidth={1.5} />
                     {loc.name}
                   </span>

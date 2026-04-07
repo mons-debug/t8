@@ -12,7 +12,7 @@ import type { Vehicle } from "@/db/schema";
 
 export function HomePage({ cars }: { cars: Vehicle[] }) {
   return (
-    <main className="flex-1">
+    <main className="flex-1 dark:bg-[#0a0a0f]">
       <Hero car={cars[0]} />
       <Brands />
       <Fleet cars={cars} />

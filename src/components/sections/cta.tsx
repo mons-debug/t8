@@ -8,7 +8,7 @@ const ease = [0.32, 0.72, 0, 1] as const;
 
 export function CTA() {
   return (
-    <section className="bg-white px-5 py-20 md:px-12">
+    <section className="bg-white dark:bg-[#0a0a0f] px-5 py-20 md:px-12">
       <div className="mx-auto max-w-[1440px]">
         <motion.div
           initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}

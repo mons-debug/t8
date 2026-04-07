@@ -26,7 +26,7 @@ function Stars({ n }: { n: number }) {
 
 export function Reviews() {
   return (
-    <section className="bg-white px-5 py-28 md:px-12 md:py-40 overflow-hidden">
+    <section className="bg-white dark:bg-[#0a0a0f] px-5 py-28 md:px-12 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-[1440px]">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
@@ -40,7 +40,7 @@ export function Reviews() {
             <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#e53935]">Témoignages</span>
             <div className="h-px w-6 bg-[#e53935]" />
           </div>
-          <h2 className="mt-5 text-[clamp(2rem,5vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.02em] text-[#0a0a0f]">
+          <h2 className="mt-5 text-[clamp(2rem,5vw,3.8rem)] font-extrabold leading-[1] tracking-[-0.02em] text-[#0a0a0f] dark:text-white">
             Ils nous font confiance.
           </h2>
         </motion.div>
@@ -59,17 +59,17 @@ export function Reviews() {
                 <motion.div
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 200, damping: 18 }}
-                  className="h-full rounded-[1.5rem] bg-white p-6 ring-1 ring-black/[0.04] transition-shadow duration-700 hover:shadow-[0_16px_50px_rgba(0,0,0,0.06)]"
+                  className="h-full rounded-[1.5rem] bg-white dark:bg-white/[0.04] p-6 ring-1 ring-black/[0.04] dark:ring-white/[0.06] transition-shadow duration-700 hover:shadow-[0_16px_50px_rgba(0,0,0,0.06)]"
                 >
                   <Stars n={r.stars} />
-                  <p className="mt-4 text-[13px] leading-[1.7] text-[#475569]">&ldquo;{r.text}&rdquo;</p>
-                  <div className="mt-5 flex items-center gap-3 border-t border-black/[0.04] pt-4">
+                  <p className="mt-4 text-[13px] leading-[1.7] text-[#475569] dark:text-[#94a3b8]">&ldquo;{r.text}&rdquo;</p>
+                  <div className="mt-5 flex items-center gap-3 border-t border-black/[0.04] dark:border-white/[0.06] pt-4">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ffebee] text-[12px] font-bold text-[#e53935]">
                       {r.name[0]}
                     </div>
                     <div>
-                      <div className="text-[13px] font-semibold text-[#0a0a0f]">{r.name}</div>
-                      <div className="text-[11px] text-[#94a3b8]">{r.city}</div>
+                      <div className="text-[13px] font-semibold text-[#0a0a0f] dark:text-white">{r.name}</div>
+                      <div className="text-[11px] text-[#94a3b8] dark:text-[#64748b]">{r.city}</div>
                     </div>
                   </div>
                 </motion.div>

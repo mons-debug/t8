@@ -14,10 +14,10 @@ export function Brands() {
   const row = [...BRANDS, ...BRANDS, ...BRANDS];
 
   return (
-    <section className="overflow-hidden border-y border-black/[0.04] bg-white py-10">
+    <section className="overflow-hidden border-y border-black/[0.04] dark:border-white/[0.06] bg-white dark:bg-[#0a0a0f] py-10">
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-28 bg-gradient-to-r from-white to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-28 bg-gradient-to-l from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-28 bg-gradient-to-r from-white dark:from-[#0a0a0f] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-28 bg-gradient-to-l from-white dark:from-[#0a0a0f] to-transparent" />
         <motion.div
           className="flex items-center gap-28"
           animate={{ x: ["0%", "-33.33%"] }}

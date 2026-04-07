@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-black/[0.04] bg-white px-5 py-16 md:px-12">
+    <footer className="border-t border-black/[0.04] dark:border-white/[0.06] bg-white dark:bg-[#0a0a0f] px-5 py-16 md:px-12">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <span className="text-xl font-extrabold tracking-tight text-[#0a0a0f]">T8 <span className="text-[#e53935]">Auto</span></span>
+            <span className="text-xl font-extrabold tracking-tight text-[#0a0a0f] dark:text-white">T8 <span className="text-[#e53935]">Auto</span></span>
             <p className="mt-3 max-w-[24ch] text-[13px] leading-[1.7] text-[#94a3b8]">
               Location de voitures fiable à Tanger depuis plus de 5 ans.
             </p>
           </div>
           <div>
-            <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c4c4c4]">Navigation</div>
+            <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c4c4c4] dark:text-[#64748b]">Navigation</div>
             <div className="space-y-2.5">
               {[
                 { href: "/cars", label: "Voitures" },
@@ -23,13 +23,13 @@ export function SiteFooter() {
                 { href: "/contact", label: "Contact" },
                 { href: "/terms", label: "Conditions" },
               ].map((l) => (
-                <Link key={l.href} href={l.href} className="block text-[13px] text-[#64748b] transition-colors duration-300 hover:text-[#0a0a0f]">{l.label}</Link>
+                <Link key={l.href} href={l.href} className="block text-[13px] text-[#64748b] dark:text-[#94a3b8] transition-colors duration-300 hover:text-[#0a0a0f] dark:hover:text-white dark:text-white">{l.label}</Link>
               ))}
             </div>
           </div>
           <div>
-            <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c4c4c4]">Livraison</div>
-            <div className="space-y-2.5 text-[13px] text-[#64748b]">
+            <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c4c4c4] dark:text-[#64748b]">Livraison</div>
+            <div className="space-y-2.5 text-[13px] text-[#64748b] dark:text-[#94a3b8]">
               <p>Aéroport Ibn Battouta</p>
               <p>Gare TGV Tanger</p>
               <p>Port Tanger Med</p>
@@ -37,8 +37,8 @@ export function SiteFooter() {
             </div>
           </div>
           <div>
-            <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c4c4c4]">Contact</div>
-            <div className="space-y-2.5 text-[13px] text-[#64748b]">
+            <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c4c4c4] dark:text-[#64748b]">Contact</div>
+            <div className="space-y-2.5 text-[13px] text-[#64748b] dark:text-[#94a3b8]">
               <p>+212 660 027 233</p>
               <p>+212 672 400 030</p>
               <p>contact@t8-auto.com</p>
@@ -52,7 +52,7 @@ export function SiteFooter() {
             </a>
           </div>
         </div>
-        <div className="mt-14 border-t border-black/[0.04] pt-6 text-center text-[11px] text-[#cbd5e1]">
+        <div className="mt-14 border-t border-black/[0.04] dark:border-white/[0.06] pt-6 text-center text-[11px] text-[#cbd5e1] dark:text-[#475569]">
           {new Date().getFullYear()} T8 Auto. Tous droits réservés.
         </div>
       </div>

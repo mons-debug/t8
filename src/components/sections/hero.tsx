@@ -38,7 +38,7 @@ export function Hero({ car }: { car?: Vehicle }) {
   return (
     <section
       ref={container}
-      className="relative min-h-[100dvh] overflow-hidden bg-[#faf6f1]"
+      className="relative min-h-[100dvh] overflow-hidden bg-[#faf6f1] dark:bg-[#0a0a0f]"
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect();
         mx.set((e.clientX - r.left - r.width / 2) * 0.012);
@@ -67,7 +67,7 @@ export function Hero({ car }: { car?: Vehicle }) {
                     transition={{ duration: 1.1, delay: 0.25 + i * 0.1, ease }}
                   >
                     <h1 className={`text-[clamp(3rem,9vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.03em] ${
-                      i === 2 ? "text-[#e53935]" : "text-[#0a0a0f]"
+                      i === 2 ? "text-[#e53935]" : "text-[#0a0a0f] dark:text-white"
                     }`}>
                       {line}
                     </h1>
@@ -80,7 +80,7 @@ export function Hero({ car }: { car?: Vehicle }) {
               initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 0.65 }}
-              className="mt-8 max-w-[34ch] text-[15px] leading-[1.7] text-[#64748b]"
+              className="mt-8 max-w-[34ch] text-[15px] leading-[1.7] text-[#64748b] dark:text-[#94a3b8]"
             >
               Livraison aéroport, gare TGV, port Tanger Med. Flotte fiable, prix transparents, réservation instantanée.
             </motion.p>
@@ -96,14 +96,14 @@ export function Hero({ car }: { car?: Vehicle }) {
                   className="group flex items-center gap-2 rounded-full bg-[#0a0a0f] py-3.5 pl-7 pr-4 text-[13px] font-semibold text-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:pr-3"
                 >
                   Explorer la flotte
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/[0.12] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-[#e53935] group-hover:translate-x-0.5">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-white/5/[0.12] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-[#e53935] group-hover:translate-x-0.5">
                     <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
                   </span>
                 </motion.div>
               </Link>
               <a href="https://wa.me/212660027233?text=Bonjour%2C%20je%20souhaite%20louer%20une%20voiture" target="_blank" rel="noopener noreferrer">
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                  className="flex items-center gap-2 rounded-full bg-white py-3.5 px-6 text-[13px] font-semibold text-[#0a0a0f] ring-1 ring-[#0a0a0f]/[0.06] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:ring-[#0a0a0f]/[0.12] hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
+                  className="flex items-center gap-2 rounded-full bg-white dark:bg-white/5 py-3.5 px-6 text-[13px] font-semibold text-[#0a0a0f] dark:text-white ring-1 ring-[#0a0a0f]/[0.06] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:ring-[#0a0a0f]/[0.12] hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
                 >
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#25d366]">
                     <Play className="h-2.5 w-2.5 fill-white text-white ml-[1px]" />
@@ -125,7 +125,7 @@ export function Hero({ car }: { car?: Vehicle }) {
                 { n: 5, s: " ans", l: "D'expérience" },
               ].map((stat) => (
                 <div key={stat.l}>
-                  <div className="text-[28px] font-bold tracking-tight text-[#0a0a0f]">
+                  <div className="text-[28px] font-bold tracking-tight text-[#0a0a0f] dark:text-white">
                     <AnimNum to={stat.n} suffix={stat.s} />
                   </div>
                   <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.15em] text-[#94a3b8]">{stat.l}</div>
@@ -161,10 +161,10 @@ export function Hero({ car }: { car?: Vehicle }) {
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.3, ease }}
-              className="absolute right-2 top-[15%] rounded-2xl bg-white/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.03] backdrop-blur-lg md:right-8"
+              className="absolute right-2 top-[15%] rounded-2xl bg-white dark:bg-white/5/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.03] backdrop-blur-lg md:right-8"
             >
               <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#94a3b8]">À partir de</div>
-              <div className="mt-1 text-[22px] font-bold tracking-tight text-[#0a0a0f]">300 <span className="text-[13px] font-normal text-[#94a3b8]">DH/jour</span></div>
+              <div className="mt-1 text-[22px] font-bold tracking-tight text-[#0a0a0f] dark:text-white">300 <span className="text-[13px] font-normal text-[#94a3b8]">DH/jour</span></div>
             </motion.div>
 
             {/* Glass tag bottom-left */}
@@ -172,10 +172,10 @@ export function Hero({ car }: { car?: Vehicle }) {
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.45, ease }}
-              className="absolute bottom-[20%] left-0 rounded-2xl bg-white/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.03] backdrop-blur-lg md:left-4"
+              className="absolute bottom-[20%] left-0 rounded-2xl bg-white dark:bg-white/5/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.03] backdrop-blur-lg md:left-4"
             >
               <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#94a3b8]">Livraison</div>
-              <div className="mt-1 text-[13px] font-semibold text-[#0a0a0f]">Aéroport · TGV · Port</div>
+              <div className="mt-1 text-[13px] font-semibold text-[#0a0a0f] dark:text-white">Aéroport · TGV · Port</div>
             </motion.div>
           </motion.div>
         </div>
